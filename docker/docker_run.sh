@@ -10,7 +10,8 @@
 # also mounted as a volume.
 #
 
-image_name=robotlocomotion/labelfusion:latest
+#image_name=robotlocomotion/labelfusion:latest
+image_name=ianre657/labelfusion:latest
 
 
 source_dir=$(cd $(dirname $0)/.. && pwd)

@@ -15,6 +15,8 @@ from director import objectmodel as om
 
 from . import utils
 
+import pprint
+pp = pprint.PrettyPrinter(indent=4)
 
 class RenderTrainingImages(object):
 
@@ -25,9 +27,14 @@ class RenderTrainingImages(object):
         self.view = view
         self.viewOptions = viewOptions
         self.pathDict = pathDict
+
+        print "self.pathDict:"
+        pp.pprint(self.pathDict)
+
         self.objectData = utils.loadObjectData()
         self.storedColors = {}
-        self.colors = cm.nipy_spectral(np.linspace(0, 1, 12))
+        self.colors = cm.nipy_spectral(np.linspace(0, 1, 18)) # 18 is the total count of the labeled data.
+        # change this number to fit the number listed in the object_data.yml
         self.colors = np.append(self.colors, [[0.5, 0.5, 0.5, 1.0]], axis=0)
         self.objectToWorld = dict()
         self.initialize()
