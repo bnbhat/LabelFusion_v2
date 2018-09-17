@@ -29,6 +29,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libeigen3-dev liblua5.2-dev libyaml-cpp-dev
 
     # dependency for ElasticFusion
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  git libsuitesparse-dev cmake-qt-gui build-essential libusb-1.0-0-dev libudev-dev \
+  freeglut3-dev libglew-dev libeigen3-dev zlib1g-dev libjpeg-dev
+#cuda-7-5
+#openjdk-7-jdk 
 
     # vtk qt
 RUN apt-get update && apt-get install -y \
