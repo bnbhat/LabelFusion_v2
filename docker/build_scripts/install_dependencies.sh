@@ -10,7 +10,10 @@ apt-get update
 
 # basic packages
 apt-get install -y --no-install-recommends \
-  sudo git bash-completion
+  sudo git bash-completion lsb-core
+# for debuuging
+apt-get install -y --no-install-recommends \
+  cmake-curses-gui
 
 # dependency for Director
 apt-get install -y --no-install-recommends \
@@ -33,16 +36,13 @@ apt-get install -y --no-install-recommends \
 #   libboost-all-dev \
 #   libglew-dev \
 #   libjpeg-dev \
-#   libeigen3-dev \
 #   libopencv-dev \
 #   libopenni2-dev \
 #   libqhull-dev \
-#   libqwt-dev \
 #   libsuitesparse-dev \
 #   libudev-dev \
 #   libusb-1.0-0-dev \
 #   mesa-utils \
-#   openjdk-8-jdk \
 #   zlib1g-dev \
 #   libyaml-cpp-dev \
 #   python-matplotlib \

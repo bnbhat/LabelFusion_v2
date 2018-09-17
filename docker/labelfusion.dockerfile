@@ -2,14 +2,49 @@
 
 # ubuntu 18.04 only support cuda9.2 with tesla,
 #FROM nvidia/cudagl:9.2-devel-ubuntu18.04
-ianre657/ros-melodic-desktop-full-nvidia:latest
+FROM ianre657/ros-melodic-desktop-full-nvidia:latest
 
 WORKDIR /root
 
-#COPY install_dependencies.sh /tmp
-#RUN /tmp/install_dependencies.sh
 
-# COPY compile_all.sh /tmp
-# RUN /tmp/compile_all.sh
+COPY build_scripts /tmp/build_scripts
+
+RUN apt-get update && apt-get upgrade -y
+# install_dependencies
+    # basic packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  sudo git bash-completion lsb-core
+
+    # for debuuging
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  cmake-curses-gui vim apt-file && apt-file update
+
+    # dependency for Director
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  build-essential cmake libglib2.0-dev \
+  libx11-dev libxext-dev libxt-dev \
+  libqt4-dev \
+  python-dev python-lxml python-numpy python-scipy python-yaml python3-vtk7 \
+  qtmultimedia5-dev libqwt-qt5-dev openjdk-8-jdk qtbase5-private-dev \
+  libeigen3-dev liblua5.2-dev libyaml-cpp-dev
+
+    # dependency for ElasticFusion
+
+    # vtk qt
+RUN apt-get update && apt-get install -y \
+    qt5-default vtk7 libvtk7-dev \
+    libvtk7-java libvtk7-jni libvtk7-qt-dev
+
+# fix Eigen3's inlcude path
+RUN ln -sf /usr/include/eigen3/Eigen /usr/include/Eigen && \
+    ln -sf /usr/include/eigen3/unsupported /usr/include/unsupported && \
+    ln -s /usr/lib/python2.7/dist-packages/vtk/libvtkRenderingPythonTkWidgets.x86_64-linux-gnu.so /usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so && \
+    ln -s /usr/bin/vtk7 /usr/bin/vtk
+
+#RUN /tmp/build_scripts/install_dependencies.sh
+
+# compile two projects
+RUN /tmp/build_scripts/compile_director.sh
+RUN /tmp/build_scripts/compile_elasticfusion.sh
 
 ENTRYPOINT bash -c "source /root/labelfusion/docker/docker_startup.sh && /bin/bash"
