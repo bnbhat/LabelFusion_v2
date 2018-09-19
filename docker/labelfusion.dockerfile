@@ -13,11 +13,12 @@ RUN apt-get update && apt-get upgrade -y
 # install_dependencies
     # basic packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  sudo git bash-completion lsb-core
+  sudo git bash-completion lsb-core wget
 
     # for debuuging
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  cmake-curses-gui vim apt-file && apt-file update
+  cmake-curses-gui vim apt-file \
+  && apt-file update 
 
     # dependency for Director
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -31,7 +32,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # dependency for ElasticFusion
 RUN apt-get update && apt-get install -y --no-install-recommends \
   git libsuitesparse-dev cmake-qt-gui build-essential libusb-1.0-0-dev libudev-dev \
-  freeglut3-dev libglew-dev libeigen3-dev zlib1g-dev libjpeg-dev
+  freeglut3-dev libglew-dev libeigen3-dev zlib1g-dev libjpeg-dev \
+  gcc-5 g++-5
+
+# add realsense2
+RUN apt-key adv --keyserver keys.gnupg.net --recv-key C8B3A55A6F3EFCDE || apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C8B3A55A6F3EFCDE && \
+    add-apt-repository "deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo bionic main" -u
+RUN apt-get update && apt-get install -y --no-install-recommends \ 
+    librealsense2-dev librealsense2-dbg
 #cuda-7-5
 #openjdk-7-jdk 
 
@@ -46,7 +54,6 @@ RUN ln -sf /usr/include/eigen3/Eigen /usr/include/Eigen && \
     ln -s /usr/lib/python2.7/dist-packages/vtk/libvtkRenderingPythonTkWidgets.x86_64-linux-gnu.so /usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so && \
     ln -s /usr/bin/vtk7 /usr/bin/vtk
 
-#RUN /tmp/build_scripts/install_dependencies.sh
 
 # compile two projects
 RUN /tmp/build_scripts/compile_director.sh
