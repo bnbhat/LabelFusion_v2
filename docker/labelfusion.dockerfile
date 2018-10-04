@@ -1,4 +1,4 @@
-FROM ianre657/ros-kinetic-xenial-qt4vtk7
+FROM ianre657/ros-kinetic-xenial-qt4vtk5
 
 # The taraget environment is VTK7.1.1 + Qt4.8.7
 
@@ -23,9 +23,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
     # dependency for Director
 RUN apt-get update && apt-get install -y --no-install-recommends \
-  build-essential cmake libglib2.0-dev  libqt4-dev\
+  build-essential cmake libglib2.0-dev libqt4-dev \
   libx11-dev libxext-dev libxt-dev \
-  python-dev python-lxml python-numpy python-scipy python-yaml python-vtk \
+  python-dev python-lxml python-numpy python-scipy python-yaml python-vtk  \
+  libvtk5-qt4-dev libvtk5-dev \
   libqwt-dev openjdk-8-jdk qtbase5-private-dev \
   libboost-all-dev libeigen3-dev liblua5.2-dev libyaml-cpp-dev libopencv-dev libqhull-dev 
 
@@ -53,7 +54,7 @@ RUN ln -sf /usr/include/eigen3/Eigen /usr/include/Eigen && \
 
 # compile director
 #RUN /tmp/build_scripts/compile_director.sh
-RUN git clone https://github.com/ianre657/director.git \
+RUN git clone -b labelFusion-director https://github.com/ianre657/director.git \
     && mkdir director-build && cd director-build \
     && cmake ../director/distro/superbuild \
         -DUSE_EXTERNAL_INSTALL:BOOL=ON \
@@ -66,7 +67,8 @@ RUN git clone https://github.com/ianre657/director.git \
         -DUSE_SYSTEM_VTK:BOOL=ON \
         -DUSE_PCL:BOOL=ON \
         -DUSE_APRILTAGS:BOOL=OFF \
-        -DUSE_KINECT:BOOL=OFF \
+        -DUSE_KINECT:BOOL=ON \
+
         -DCMAKE_INSTALL_PREFIX:PATH=/root/install \
         -DCMAKE_BUILD_TYPE:STRING=Release \
         -DDD_QT_VERSION:STRING=4 \
