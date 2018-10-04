@@ -11,8 +11,8 @@
 #
 
 #image_name=robotlocomotion/labelfusion:latest
-image_name=ianre657/labelfusion:new_docker
-
+#image_name=ianre657/labelfusion:new_docker
+image_name=ianre657/labelfusion:16.04-latetest
 
 source_dir=$(cd $(dirname $0)/.. && pwd)
 
@@ -33,18 +33,12 @@ docker run -it \
   --rm \
   --runtime=nvidia \
   -e DISPLAY \
-  -e XAUTHORITY \
   --privileged \
   -e QT_X11_NO_MITSHM=1 \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-  --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
   -v $source_dir:/root/labelfusion $data_mount_arg \
   -v /dev/bus/usb:/dev/bus/usb \
-  ianre657/labelfusion:new_docker
-
- # --privileged \
-#  -e XDG_RUNTIME_DIR \
-#  -v $XDG_RUNTIME_DIR:$XDG_RUNTIME_DIR:rw \
+  $image_name
 
 # docker run -it \
 #   --runtime=nvidia

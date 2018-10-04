@@ -7,6 +7,6 @@ set -exu
 
 root_dir=$(cd $(dirname $0)/../ && pwd)
 
-tag_name=ianre657/labelfusion:new_docker
+tag_name=ianre657/labelfusion:16.04-latetest
 
 docker build -f $root_dir/docker/labelfusion.dockerfile -t ${tag_name} $root_dir/docker

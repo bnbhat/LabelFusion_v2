@@ -37,7 +37,7 @@ build_director()
       -DUSE_KINECT:BOOL=ON \
       -DCMAKE_INSTALL_PREFIX:PATH=$install_dir \
       -DCMAKE_BUILD_TYPE:STRING=Release \
-      -DDD_QT_VERSION:STRING=5
+      -DDD_QT_VERSION:STRING=4
 
   #make -j1
   make -j$(nproc) -l$(nproc)
