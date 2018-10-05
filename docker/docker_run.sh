@@ -2,17 +2,15 @@
 #
 # Usage:  ./docker_run.sh [/path/to/data]
 #
-# This script calls `nvidia-docker run` to start the labelfusion
-# container with an interactive bash session.  This script sets
-# the required environment variables and mounts the labelfusion
-# source directory as a volume in the docker container.  If the
-# path to a data directory is given then the data directory is
-# also mounted as a volume.
+# This script calls `docker` with `nvidia-docker2 runtime` to start the 
+# labelfusion container with an interactive bash session.  This script 
+# sets the required environment variables and mounts the labelfusion 
+# source directory as a volume in the docker container.  If the path 
+# to a data directory is given then the data directory is also mounted 
+# as a volume.
 #
 
-#image_name=robotlocomotion/labelfusion:latest
-image_name=ianre657/labelfusion:16.04-latetest
-
+source ./config.sh
 source_dir=$(cd $(dirname $0)/.. && pwd)
 
 if [ ! -z "$1" ]; then
