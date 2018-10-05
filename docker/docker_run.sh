@@ -11,7 +11,6 @@
 #
 
 #image_name=robotlocomotion/labelfusion:latest
-#image_name=ianre657/labelfusion:new_docker
 image_name=ianre657/labelfusion:16.04-latetest
 
 source_dir=$(cd $(dirname $0)/.. && pwd)
@@ -28,7 +27,6 @@ if [ ! -z "$1" ]; then
 fi
 
 xhost +
-# it is required to have 
 docker run -it \
   --rm \
   --runtime=nvidia \
@@ -39,15 +37,4 @@ docker run -it \
   -v $source_dir:/root/labelfusion $data_mount_arg \
   -v /dev/bus/usb:/dev/bus/usb \
   $image_name
-
-# docker run -it \
-#   --runtime=nvidia
-#   -e DISPLAY \
-#   -e QT_X11_NO_MITSHM=1 \
-#   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-#   -v $source_dir:/root/labelfusion $data_mount_arg \
-#   --privileged \
-#   -v /dev/bus/usb:/dev/bus/usb\
-#   $image_name
-
 xhost -
