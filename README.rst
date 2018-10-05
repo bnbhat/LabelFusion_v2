@@ -44,6 +44,69 @@ In another, run:
 Your data will be saved in current directory as :code:`lcmlog-*`.
 
 
+Collect raw data from Realsense
+---------------------------
+
+First, install 
+.. _librealsense: https://github.com/IntelRealSense/librealsense
+, 
+.. _intel_ros/relasense: https://github.com/intel-ros/realsense 
+and
+.. _rgbd_ros_to_lcm: https://github.com/MobileManipulation/rgbd_ros_to_lcm
+
+Second, :code:`cdlf && cd data/logs`, then make a new directory for your data.  In one terminal, run:
+
+::
+
+	roscore
+
+In one, run:
+
+::
+
+	roslaunch realsense2_camera rs_rgbd.launch
+
+modify rgbd_ros_to_lcm topic:
+modify this file ~/catkin_ws/src/rgbd_ros_to_lcm/launch/lcm_republisher.launch to
+
+::
+
+<?xml version="1.0"?>
+<launch>
+
+  <node name="lcm_republisher" pkg="rgbd_ros_to_lcm" type="lcm_republisher" output="screen" respawn="false" >
+    
+    <rosparam subst_value="true">      
+      # input parameters
+      subscribe_point_cloud: false
+      rgb_topic: /camera/color/image_raw
+      depth_topic: /camera/aligned_depth_to_color/image_raw
+      cloud_topic: /camera/depth_registered/points
+
+      # output parameters
+      output_lcm_channel: "OPENNI_FRAME"
+      compress_rgb: true
+      compress_depth: true
+
+      debug_print_statements: true
+    </rosparam>
+  </node>
+</launch>
+
+and run
+
+::
+
+    roslaunch rgbd_ros_to_lcm lcm_republisher.launch
+
+In another, run:
+
+::
+
+	lcm-logger
+
+Your data will be saved in current directory as :code:`lcmlog-*`.
+
 Process into labeled training data
 ----------------------------------
 
