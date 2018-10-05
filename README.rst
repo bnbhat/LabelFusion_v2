@@ -26,6 +26,23 @@ This is the quick version.  If you'd prefer to go step-by-step manually, see Pip
 
 .. _Pipeline_Instructions: https://github.com/RobotLocomotion/LabelFusion/blob/master/docs/pipeline.rst
 
+Camera intrinsic calibration
+---------------------------
+
+For ElasticFusion calibration, create camera.cfg file into your lcm-log folder. camera.cfg is :code:`fx fy px py` in one line.
+
+For render training image, edit :code:`LabelFusion/modules/labelfusion/rendertrainingimages.py` "setCameraInstrinsicsAsus" fuction.
+
+.. code-block:: python
+	
+	def setCameraInstrinsicsAsus(view):
+      		principalX = 320.0
+      		principalY = 240.0
+      		focalLength = 617.0 # fx = fy = focalLength
+      		setCameraIntrinsics(view, principalX, principalY, focalLength)
+
+
+
 Collect raw data from Xtion
 ---------------------------
 
