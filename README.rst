@@ -47,12 +47,9 @@ Your data will be saved in current directory as :code:`lcmlog-*`.
 Collect raw data from Realsense
 ---------------------------
 
-First, install librealsense 
-.. _librealsense: https://github.com/IntelRealSense/librealsense
-, `intel_ros/relasense`.
-.. _intel_ros/relasense: https://github.com/intel-ros/realsense 
-and `rgbd_ros_to_lcm`.
-.. _rgbd_ros_to_lcm: https://github.com/MobileManipulation/rgbd_ros_to_lcm
+First, install `librealsense  <https://github.com/IntelRealSense/librealsense>`_
+, `intel_ros_relasense <https://github.com/intel-ros/realsense>`_
+and `rgbd_ros_to_lcm <https://github.com/MobileManipulation/rgbd_ros_to_lcm>`_
 
 Second, :code:`cdlf && cd data/logs`, then make a new directory for your data.  In one terminal, run:
 
@@ -69,7 +66,7 @@ In one, run:
 modify rgbd_ros_to_lcm topic:
 modify this file ~/catkin_ws/src/rgbd_ros_to_lcm/launch/lcm_republisher.launch to
 
-.. code_block:: 
+.. code-block:: 
 
 	<?xml version="1.0"?>
 	<launch>
