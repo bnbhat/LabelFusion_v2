@@ -321,7 +321,7 @@ def setCameraIntrinsics(view, principalX, principalY, focalLength):
 def setCameraInstrinsicsAsus(view):
     principalX = 320.0
     principalY = 240.0
-    focalLength = 528.0
+    focalLength = 617.0
     setCameraIntrinsics(view, principalX, principalY, focalLength)
 
 #######################################################################################
