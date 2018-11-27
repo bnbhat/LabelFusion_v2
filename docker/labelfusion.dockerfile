@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # dependency for Director
     build-essential cmake libglib2.0-dev libqt4-dev \
     libx11-dev libxext-dev libxt-dev \
-    python-dev python-lxml python-numpy python-scipy python-yaml python-vtk  \
+    python-dev python-pip python-lxml python-numpy python-scipy python-yaml python-vtk python-matplotlib \
     libvtk5-qt4-dev libvtk5-dev \
     libqwt-dev openjdk-8-jdk qtbase5-private-dev \
     libboost-all-dev libeigen3-dev liblua5.2-dev libyaml-cpp-dev libopencv-dev libqhull-dev \

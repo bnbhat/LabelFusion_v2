@@ -15,8 +15,6 @@ from director import objectmodel as om
 
 from . import utils
 
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
 
 class RenderTrainingImages(object):
 
@@ -27,10 +25,6 @@ class RenderTrainingImages(object):
         self.view = view
         self.viewOptions = viewOptions
         self.pathDict = pathDict
-
-        print "self.pathDict:"
-        pp.pprint(self.pathDict)
-
         self.objectData = utils.loadObjectData()
         self.storedColors = {}
         self.colors = cm.nipy_spectral(np.linspace(0, 1, len(self.objectData.keys()) ))
