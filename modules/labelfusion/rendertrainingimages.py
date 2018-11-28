@@ -27,7 +27,7 @@ class RenderTrainingImages(object):
         self.pathDict = pathDict
         self.objectData = utils.loadObjectData()
         self.storedColors = {}
-        self.colors = cm.nipy_spectral(np.linspace(0, 1, len(self.objectData.keys()) ))
+        self.colors = cm.nipy_spectral(np.linspace(0, 1, 12))
         self.colors = np.append(self.colors, [[0.5, 0.5, 0.5, 1.0]], axis=0)
         self.objectToWorld = dict()
         self.initialize()
@@ -314,7 +314,7 @@ def setCameraIntrinsics(view, principalX, principalY, focalLength):
 def setCameraInstrinsicsAsus(view):
     principalX = 320.0
     principalY = 240.0
-    focalLength = 617.0
+    focalLength = 528.0
     setCameraIntrinsics(view, principalX, principalY, focalLength)
 
 #######################################################################################

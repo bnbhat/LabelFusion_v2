@@ -19,8 +19,4 @@ export SUPER4PCS_BASE_DIR=$HOME/software_tools/nmellado-Super4PCS-c77cc4a
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DIRECTOR_INSTALL_DIR/lib
 
 
-cdlf()
-{
-    cd $LABELFUSION_SOURCE_DIR
-}
-export -f cdlf
+alias cdlf='cd $LABELFUSION_SOURCE_DIR'
