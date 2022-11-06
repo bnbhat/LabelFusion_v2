@@ -4,6 +4,12 @@ WORKDIR /root
 #COPY build_scripts /tmp/build_scripts
 
 RUN apt-get update && apt-get upgrade -y
+
+# add repositories for k4a-tools
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - \
+    && sudo apt-add-repository https://packages.microsoft.com/ubuntu/18.04/prod \
+    && sudo apt-get update 
+
 # install_dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
@@ -33,8 +39,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # dependency for ElasticFusion
     git libsuitesparse-dev cmake-qt-gui build-essential libusb-1.0-0-dev libudev-dev \
     freeglut3-dev libglew-dev libeigen3-dev zlib1g-dev libjpeg-dev libopenni2-dev \
-    gcc-5 g++-5
+    gcc-5 g++-5 \
 
+    # dependency for rgbd_ros_to_lcm
+
+    # dependency for  ROS Wrapper azure kinect
+    # ROS Melodic
+
+    # dependency for  azure kinect sdk 1.3.0
+    k4a-tools=1.3.0
 
 # fix some path issue     ////updated the path to cuda 9.2
 RUN ln -sf /usr/include/eigen3/Eigen /usr/include/Eigen && \
