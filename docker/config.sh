@@ -4,4 +4,5 @@
 #
 
 #image_name=robotlocomotion/labelfusion:latest
-image_name=ianre657/labelfusion:16.04-latetest
+#image_name=ianre657/labelfusion:16.04-latetest
+image_name=bnbhat/labelfusion_v2:latest
