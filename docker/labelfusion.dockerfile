@@ -1,4 +1,4 @@
-FROM nvidia/cudagl:9.2-runtime-ubuntu18.04
+FROM nvidia/cudagl:9.2-runtime-ubuntu18.04  
 WORKDIR /root
 
 #COPY build_scripts /tmp/build_scripts
@@ -36,11 +36,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc-5 g++-5
 
 
-# fix some path issue
+# fix some path issue     ////updated the path to cuda 9.2
 RUN ln -sf /usr/include/eigen3/Eigen /usr/include/Eigen && \
     ln -sf /usr/include/eigen3/unsupported /usr/include/unsupported && \
     ln -s /usr/lib/python2.7/dist-packages/vtk/libvtkRenderingPythonTkWidgets.x86_64-linux-gnu.so /usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so && \
-    ln -s /usr/local/cuda-9.2 /usr/local/cuda
+    ln -s /usr/local/cuda-9.2 /usr/local/cuda  
 
 
 # compile director
